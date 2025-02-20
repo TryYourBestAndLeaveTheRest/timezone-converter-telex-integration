@@ -10,7 +10,7 @@ from dateparser import parse
 app = FastAPI()
 
 
-BASE_URL = 'https://myurl.com'
+# BASE_URL = 'https://myurl.com'
 ALL_TIMEZONES = list(pytz.all_timezones)
 IMAGE_PATH='img/logo.png'
 
@@ -27,6 +27,10 @@ class TimeConversionRequest(BaseModel):
 
 class TimeConversionResponse(BaseModel):
     converted_time: str
+@app.get('/')
+def gethome():
+    return {"status":"running"}
+
 
 @app.get('/app-logo')
 async def get_logo():
@@ -36,7 +40,8 @@ async def get_logo():
 
 
 @app.get('/integration-json')
-def get_integration_json():
+def get_integration_json(request:Request):
+    BASE_URL = str(request.base_url).rstrip("/")
     integration_json = {
   "data": {
     "date": {
