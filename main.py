@@ -153,7 +153,6 @@ def process_time_conversion(request: TimeConversionRequest):
         returned_message = re.sub(pattern, to_replace_date, request.message)
 
         return {"message": returned_message}
-
     except Exception as e:
         return {"error": str(e), 'status': 'failed'}
 
