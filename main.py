@@ -85,9 +85,10 @@ def get_integration_json(request:Request):
       {
         "label": "Timezones",
         "type": "dropdown",
+        "options": ALL_TIMEZONES,
+        "description":"user will select their timezone with this",
         "required": True,
         "default": "Africa/lagos",
-        "options": ALL_TIMEZONES
       }
     ],
     "target_url":f'{BASE_URL}/convert-time'
